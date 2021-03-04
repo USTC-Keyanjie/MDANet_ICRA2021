@@ -21,9 +21,10 @@ All the codes are tested in the following environment:
 - NVIDIA CUDA 10.1.105
 - mmcv 1.0.5 (You can install mmcv from this [repo](https://github.com/open-mmlab/mmcv))
 
-```
+```bash
 pip install glob
 pip install pillow
+pip install tqdm
 pip install opencv-python
 ```
 
