@@ -2,7 +2,7 @@
 
 This is the official PyTorch implementation of MDANet (ICRA 2021), an efficient network for depth completion.
 
-![introduction](images\introduction.png)
+![introduction](images/introduction.png)
 
 ## Introduction
 
