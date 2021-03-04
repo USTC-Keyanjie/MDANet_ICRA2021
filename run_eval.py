@@ -69,7 +69,7 @@ exp_dir = os.path.join(training_ws_path, exp)
 sys.path.append(exp_dir)
 
 # Read parameters file
-with open(os.path.join("config", args.params + ".json"), 'r') as fp:
+with open(os.path.join("config", args.config + ".json"), 'r') as fp:
     params = json.load(fp)
 # config['gpu_id'] = "0"
 

@@ -17,7 +17,7 @@ import numpy as np
 import glob
 import torchvision
 import random
-from torch.utils.data import Dataset
+from torch.utils.data import DataLoader, Dataset
 
 
 class KittiDepthDataset(Dataset):

@@ -12,8 +12,13 @@ __email__ = "abdo.eldesokey@gmail.com"
 ########################################
 
 import os
+import torch
 from torchvision import transforms
-from torch.utils.data import DataLoader
+from torch.utils.data import DataLoader, Dataset
+from dataloader.KittiDepthDataset import KittiDepthDataset
+import random
+import glob
+
 def KittiDataLoader(params):
     # Input images are 16-bit, but only 15-bits are utilized, so we normalized the data to [0:1] using a normalization factor
     norm_factor = params['data_normalize_factor']
