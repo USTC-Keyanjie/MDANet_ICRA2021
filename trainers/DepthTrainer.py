@@ -159,16 +159,22 @@ class KittiDepthTrainer(Trainer):
                 MAELoss12 = self.objective2(outputs[1], gt_depth)
                 MAELoss14 = self.objective2(outputs[2], gt_depth)
 
-                if self.epoch < 6:
-                    loss = MSELoss14 + MSELoss12 + MSELoss11 + \
-                           MAELoss14 + MAELoss12 + MAELoss11
-                elif self.epoch < 11:
-                    loss = 0.1 * MSELoss14 + 0.1 * MSELoss12 + MSELoss11 + \
-                           0.1 * MAELoss14 + 0.1 * MAELoss12 + MAELoss11
-                elif self.epoch < 41:
-                    loss = MSELoss11 + MAELoss11
+                if self.epoch < 41:
+                    gamma = 1
                 else:
-                    loss = MSELoss11
+                    gamma = 0
+
+                if self.epoch < 6:
+                    delta = 1
+                elif self.epoch < 11:
+                    delta = 0.1
+                else:
+                    delta = 0
+
+                MSELoss = delta * MSELoss14 + delta * MSELoss12 + MSELoss11
+                MAELoss = delta * MAELoss14 + delta * MAELoss12 + MAELoss11
+
+                loss = MSELoss + gamma * MAELoss
 
                 # backward + optimize only if in training phase
                 loss.backward()
@@ -248,7 +254,6 @@ class KittiDepthTrainer(Trainer):
                     duration = time.time() - start_time
                     times.update(duration / inputs_d.size(0), inputs_d.size(0))
                     # ========================
-
 
                     if s == 'selval' or s == 'val' or s == 'test':
 
