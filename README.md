@@ -32,17 +32,17 @@ The models reported in paper are trained with 8 *NVIDIA Tesla P100* (16G) GPUs w
 
 ### Installation
 
-a. Clone this repository
+a. clone this repository
 
 ```bash
 git clone https://github.com/USTC-Keyanjie/MDANet_ICRA2021.git && cd MDANet_ICRA2021
 ```
 
-b. Download our trained weight file
+b. download our trained weight file
 
 You could download the pretrained model of MDANet from [Google Drive](https://drive.google.com/file/d/1BV08KU-KVndhl0sw-4hzvOw95eW6Ik6F/view?usp=sharing) or [BaiduYun](https://pan.baidu.com/s/1Q7jY3AwUp0vXXsowIqKaeQ)(Password: m3eb).
 
-c. Move it to checkpoints folder
+c. move it to checkpoints folder
 
 ```bash
 mv net-best.pth.tar results/quickstart/checkpoints/
