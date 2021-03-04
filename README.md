@@ -94,7 +94,7 @@ a. modify the config file (default config file is `config\default.json`)
 b. run the code
 
 ```bash
-python run_eval.py --params default --set test --ckpt results/quickstart/checkpoints/net-best.pth.tar
+python run_eval.py --config default --set test --ckpt results/quickstart/checkpoints/net-best.pth.tar
 ```
 
 You can also save the output by attaching `--save_output` to the above command. The evaluation report will be saved in the `eval.log` file after the program runs.
@@ -102,7 +102,7 @@ You can also save the output by attaching `--save_output` to the above command. 
 ## Train
 
 ```bash
-python train.py --params default
+python train.py --config default
 ```
 
 The train report will be saved in the `train.log` file after the program runs.
@@ -112,7 +112,7 @@ The train report will be saved in the `train.log` file after the program runs.
 a. infer single model
 
 ```bash
-python run_eval.py --params default --set selval --ckpt results/<your/train/dir>/checkpoints/<model_name>.pth.tar
+python run_eval.py --config default --set selval --ckpt results/<your/train/dir>/checkpoints/<model_name>.pth.tar
 ```
 
 b. infer multiple model
@@ -120,7 +120,7 @@ b. infer multiple model
 You can infer multiple model by specifying the `ckpt` to a folder. For example:
 
 ```bash
-python run_eval.py --params default --set selval --ckpt results/<your/train/dir>/checkpoints
+python run_eval.py --config default --set selval --ckpt results/<your/train/dir>/checkpoints
 ```
 
 The evaluation report will be saved in the `eval_folder.log` file after the program runs.
