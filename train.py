@@ -46,7 +46,7 @@ torch.cuda.manual_seed(1)
 
 # Parse Arguments
 parser = argparse.ArgumentParser()
-parser.add_argument('--params', required=True)
+parser.add_argument('--config', required=True)
 parser.add_argument('--model', default=None)
 parser.add_argument('--mode', action='store', dest='mode', default='train', help='"eval" or "train" mode')
 parser.add_argument('--exp', action='store', dest='exp', default='exp_msg_chn',
@@ -69,13 +69,13 @@ os.makedirs(exp_dir)
 # sys.path.append(exp_dir)
 
 # Read parameters file
-with open(os.path.join("params", args.params + ".json"), 'r') as fp:
+with open(os.path.join("config", args.params + ".json"), 'r') as fp:
     params = json.load(fp)
-# params['gpu_id'] = "0"
+# config['gpu_id'] = "0"
 
 # Use GPU or not
-# device = torch.device("cuda:" + str(params['gpu_id']) if torch.cuda.is_available() else "cpu")
-# device = torch.device("cuda:" + params['gpu_id'] if torch.cuda.is_available() else "cpu")
+# device = torch.device("cuda:" + str(config['gpu_id']) if torch.cuda.is_available() else "cpu")
+# device = torch.device("cuda:" + config['gpu_id'] if torch.cuda.is_available() else "cpu")
 
 # Dataloader
 data_loader = params['data_loader'] if 'data_loader' in params else 'KittiDataLoader'
@@ -84,7 +84,7 @@ dataloaders, dataset_sizes = eval(data_loader)(params)
 # Import the network file
 model_name = args.model if args.model is not None else params['model']
 f = importlib.import_module('modules.' + model_name)
-model = f.network().cuda()  # pos_fn=params['enforce_pos_weights']
+model = f.network().cuda()  # pos_fn=config['enforce_pos_weights']
 model = nn.DataParallel(model)
 
 # Import the trainer
@@ -109,7 +109,7 @@ optimizer = getattr(optim, params['optimizer'])(parameters, lr=params['lr'],
                                                 weight_decay=params['weight_decay'])
 
 # Decay LR by a factor of 0.1 every exp_dir7 epochs
-# lr_decay = lr_scheduler.MultiStepLR(optimizer, milestones=params['lr_decay_step'], gamma=params['lr_decay']) #
+# lr_decay = lr_scheduler.MultiStepLR(optimizer, milestones=config['lr_decay_step'], gamma=config['lr_decay']) #
 lr_decay = lr_scheduler.StepLR(optimizer, step_size=params['lr_decay_step'], gamma=params['lr_decay'])
 
 mytrainer = t.KittiDepthTrainer(model, params, optimizer, objective1, objective2, lr_decay, dataloaders, dataset_sizes,

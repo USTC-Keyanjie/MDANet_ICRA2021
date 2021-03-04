@@ -13,8 +13,6 @@ __email__ = "abdo.eldesokey@gmail.com"
 
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
-import matplotlib.pyplot as plt
 
 class MAELoss(nn.Module):
     def __init__(self):

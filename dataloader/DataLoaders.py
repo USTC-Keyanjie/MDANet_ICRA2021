@@ -12,18 +12,13 @@ __email__ = "abdo.eldesokey@gmail.com"
 ########################################
 
 import os
-import torch
 from torchvision import transforms
-from torch.utils.data import DataLoader, Dataset
-from dataloader.KittiDepthDataset import KittiDepthDataset
-import random
-import glob
-
+from torch.utils.data import DataLoader
 def KittiDataLoader(params):
     # Input images are 16-bit, but only 15-bits are utilized, so we normalized the data to [0:1] using a normalization factor
     norm_factor = params['data_normalize_factor']
     invert_depth = params['invert_depth']
-    ds_dir = params['dataset_dir']
+    ds_dir = params['depth_dir']
     rgb_dir = params['rgb_dir'] if 'rgb_dir' in params else None
     rgb2gray = params['rgb2gray'] if 'rgb2gray' in params else False
     fill_depth = params['fill_depth'] if 'fill_depth' in params else False

@@ -1,8 +1,6 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-import numpy as np
-import matplotlib.pyplot as plt
 from mmcv.ops import ModulatedDeformConv2d
 
 channel_num = [32, 32, 32, 32, 32, 32]

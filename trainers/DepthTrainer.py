@@ -14,17 +14,12 @@ __email__ = "abdo.eldesokey@gmail.com"
 from tqdm import tqdm
 
 from trainers.trainer import Trainer  # from CVLPyDL repo
-import torch
 
-import matplotlib.pyplot as plt
 import os.path
 from utils.AverageMeter import AverageMeter
 from utils.saveTensorToImage import *
-from utils.ErrorMetrics import *
 import time
 from modules.losses import *
-import cv2
-import logging
 
 err_metrics = ['MAE()', 'RMSE()', 'iMAE()', 'iRMSE()']
 
@@ -349,7 +344,7 @@ class KittiDepthTrainer(Trainer):
                 # AverageMeters for time
                 times = AverageMeter()
 
-                # device = torch.device("cuda:" + str(self.params['gpu_id']) if torch.cuda.is_available() else "cpu")
+                # device = torch.device("cuda:" + str(self.config['gpu_id']) if torch.cuda.is_available() else "cpu")
 
                 with torch.no_grad():
 
