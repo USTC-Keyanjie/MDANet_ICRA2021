@@ -105,7 +105,7 @@ You can also save the output by attaching `--save_output` to the above command. 
 python train.py --config default
 ```
 
-The train report will be saved in the `train.log` file after the program runs.
+The train report will be saved in the `train.log` file after the training.
 
 ## Inference
 
